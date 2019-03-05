@@ -21,10 +21,10 @@ def hello():
     return "Hello World!"
 
 
-@app.route("/calc_color", methods=['POST'])
+@app.route("/calc_color", methods=['GET'])
 def calc_color():
-    request_data = request.json
-    picUrl = request_data["picUrl"]
+
+    picUrl = request.args.get("picUrl")
 
     # 默认色彩
     color = (210, 171, 164)
@@ -37,7 +37,7 @@ def calc_color():
 
         return jsonify({'success': True, 'color': color})
     else:
-        return jsonify({'success': False})
+        return jsonify({'success': False, 'color': color})
 
 
 def calc_img_color(name):
