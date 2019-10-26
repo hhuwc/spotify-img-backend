@@ -4,9 +4,9 @@ import requests
 import os
 import colorsys
 from PIL import Image
-
-app = Flask(__name__)
-
+from flask_cors import CORS
+app = Flask(__name__, static_url_path='', static_folder='C:/Users/wc/Desktop')
+CORS(app, supports_credentials=True)
 # 文件绝对路径
 folder = "{}/img/".format(os.getcwd())
 if not os.path.exists(folder):
@@ -23,7 +23,6 @@ def hello():
 
 @app.route("/calc_color", methods=['GET'])
 def calc_color():
-
     picUrl = request.args.get("picUrl")
 
     # 默认色彩
